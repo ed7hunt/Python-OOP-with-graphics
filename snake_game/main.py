@@ -34,12 +34,13 @@ while game_is_on:
         scoreboard.increment()
         snake.extend()
     # Detect collision with tail
-    for segment in snake.segments[1:]:
-        ''' Let's rewrite this using slicing:
+    ''' Let's rewrite this using slicing:
+    for segment in snake.segments:
         if segment == snake.head:
             pass
         elif snake.head.distance(segment) < 10:
         '''
+    or segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
             game_is_on = False
             scoreboard.game_over_collided_with_self()
