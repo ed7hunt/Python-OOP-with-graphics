@@ -34,22 +34,18 @@ while game_is_on:
         scoreboard.increment()
         snake.extend()
     # Detect collision with tail
-    ''' Let's rewrite this using slicing:
-    for segment in snake.segments:
+    for segment in snake.segments[1:]:
+        ''' Let's rewrite this using slicing:
         if segment == snake.head:
             pass
         elif snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over_collided_with_self()
-    '''
-    or segment in snake.segments[1:]:
+        '''
         if snake.head.distance(segment) < 10:
-            game_is_on = False
-            scoreboard.game_over_collided_with_self()
+            scoreboard.reset()
+            snake.reset()
     # Detect collision with wall
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        game_is_on = False
-        scoreboard.game_over_hit_wall()
-
+        scoreboard.reset()
+        snake.reset()
 
 screen.exitonclick()
